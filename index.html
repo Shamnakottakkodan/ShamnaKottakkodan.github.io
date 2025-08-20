@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shamma K | Data Analyst Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 10px auto;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .highlight {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-list {
+            list-style-type: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Projects/Dashboards Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+
+        .project {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .dashboard-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+            background: #f1f1f1; /* Light grey background while loading */
+            border: 1px solid #ddd;
+        }
+
+        .dashboard-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav>
+            <div class="logo">Shamma K</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#dashboards">Dashboards</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Data Analyst & Visualization Specialist</h1>
+            <p>Transforming complex data into clear, actionable insights and compelling visual stories.</p>
+            <a href="#dashboards" class="btn">View My Dashboards</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Hello! I'm Shamma, a Data Analyst based in London, UK.</h3>
+                <p>I recently graduated with a <span class="highlight">1st Class Honours in MSc Data Science</span> from the University of Greenwich. I am passionate about using tools like <span class="highlight">Power BI, Python, and SQL</span> to solve real-world business problems, from spend analysis and predictive modelling to creating interactive dashboards that drive decision-making.</p>
+                <p>My experience includes internships as a Data Analyst and Data Scientist, where I focused on data storytelling, EDA, and building machine learning models. I am now actively seeking opportunities to bring my technical skills and analytical mindset to a dynamic team.</p>
+                <p>I have the <span class="highlight">right to work in the UK</span> and am ready to contribute immediately.</p>
+            </div>
+            <!-- You can add a profile picture here later -->
+            <!-- <div class="about-image">
+                <img src="your-profile-picture.jpg" alt="Shamma K">
+            </div> -->
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills & Tools</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Data Analysis & Visualization</h3>
+                <ul class="skill-list">
+                    <li>Power BI (DAX, Power Query, Data Modeling)</li>
+                    <li>Excel (Pivot Tables, Power Query, VLOOKUP)</li>
+                    <li>SQL</li>
+                    <li>Tableau/Looker</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Programming & Data Science</h3>
+                <ul class="skill-list">
+                    <li>Python (Pandas, NumPy, Scikit-learn)</li>
+                    <li>Machine Learning</li>
+                    <li>Data Cleaning & Preprocessing</li>
+                    <li>Git / GitHub</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Soft Skills & Other</h3>
+                <ul class="skill-list">
+                    <li>Data Storytelling</li>
+                    <li>Stakeholder Communication</li>
+                    <li>Problem Solving</li>
+                    <li>Azure Databricks</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboards/Projects Section -->
+    <section id="dashboards">
+        <h2>Power BI Portfolio</h2>
+        <div class="projects-container">
+
+            <!-- DASHBOARD 1 -->
+            <div class="project">
+                <div class="dashboard-container">
+                    <!-- REPLACE THIS COMMENT WITH YOUR 1st POWER BI EMBED CODE -->
+                    <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYOUR_EMBED_ID_HERE" frameborder="0" allowFullScreen="true"></iframe>
+                </div>
+                <div class="project-content">
+                    <h3>Spend Analysis Dashboard</h3>
+                    <p>This dashboard visualizes company spending patterns, identifying key cost-saving opportunities and trends across departments and suppliers. Built with advanced DAX measures and interactive filters for drill-down analysis.</p>
+                </div>
+            </div>
+
+            <!-- DASHBOARD 2 -->
+            <div class="project">
+                <div class="dashboard-container">
+                    <!-- REPLACE THIS COMMENT WITH YOUR 2nd POWER BI EMBED CODE -->
+                    <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYOUR_EMBED_ID_HERE" frameborder="0" allowFullScreen="true"></iframe>
+                </div>
+                <div class="project-content">
+                    <h3>London Airbnb Market Analysis</h3>
+                    <p>An exploration of the London Airbnb market, analyzing pricing, occupancy rates, and seasonal demand variations across different boroughs. This project involved data cleaning in Python and storytelling in Power BI.</p>
+                </div>
+            </div>
+
+            <!-- DASHBOARD 3 -->
+            <div class="project">
+                <div class="dashboard-container">
+                    <!-- REPLACE THIS COMMENT WITH YOUR 3rd POWER BI EMBED CODE -->
+                    <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYOUR_EMBED_ID_HERE" frameborder="0" allowFullScreen="true"></iframe>
+                </div>
+                <div class="project-content">
+                    <h3>PwC Switzerland Power BI Simulation</h3>
+                    <p>A simulation project completed via Forage, developing KPI dashboards for a simulated client scenario. Focused on data modeling, cleansing, and creating executive-level summaries for key business metrics.</p>
+                </div>
+            </div>
+
+            <!-- DASHBOARD 4 -->
+            <div class="project">
+                <div class="dashboard-container">
+                    <!-- REPLACE THIS COMMENT WITH YOUR 4th POWER BI EMBED CODE -->
+                    <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYOUR_EMBED_ID_HERE" frameborder="0" allowFullScreen="true"></iframe>
+                </div>
+                <div class="project-content">
+                    <h3>E-commerce Performance Dashboard</h3>
+                    <p>A comprehensive view of sales performance, customer demographics, and product classification results. Integrates data from various sources to provide a holistic view of business health and opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-content">
+            <p>I am currently open to new opportunities as a Data Analyst or Data Scientist. Feel free to reach out to me via email or connect with me on LinkedIn.</p>
+            <div class="contact-links">
+                <a href="mailto:shamma.k@hotmail.com" class="btn">Email Me</a>
+                <a href="https://www.linkedin.com/in/shamnakottakkodan/" target="_blank" class="btn">LinkedIn</a>
+                <!-- Optional: Link to your CV PDF -->
+                <a href="Shamna_CV_NEXT.pdf" download class="btn">Download CV</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Shamma K. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
